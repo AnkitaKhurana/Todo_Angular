@@ -8,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class TodoAreaComponent implements OnInit {
-  constructor() { }
-  ngOnInit() {
+  constructor(private todos: Array<Object>) {
+    todos = new Array();
   }
+  ngOnInit() {
+    this.todos  //GET TODOS FROM SERVICE
+  }
+
 
 }
