@@ -7,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  loggedIn: Boolean
-  constructor( ) {
-    this.loggedIn = false;
-   }
 
+  logged: Boolean
+  constructor( ) {
+    this.logged = false;
+   }
+   logging(value : Boolean){
+     console.log('Logging',value)
+     this.logged = value;
+   }
   ngOnInit() {
   }
 
