@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
+import { TodoService } from '../todo.service';
+import { Todo } from '../todo';
 
 
 @Component({
@@ -8,12 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class TodoAreaComponent implements OnInit {
-  constructor(private todos: Array<Object>) {
-    todos = new Array();
+  private todos: Todo[];
+
+  constructor(private todoService: TodoService) {
+    
   }
   ngOnInit() {
-    this.todos  //GET TODOS FROM SERVICE
+    this.todos =this.todoService.getTodos()//todos =>
+      
   }
-
-
 }
