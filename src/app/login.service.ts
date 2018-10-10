@@ -26,8 +26,13 @@ export class LoginService {
   ) { }
 
   login(user: User): Observable<User> {
-    return this.http.post<User>(this.UserUrl+"User/Login/", user, httpOptions).pipe(
-      catchError(this.handleError<User>('login'))
+    let Request = {
+      UserName : user.username,
+      Password:user.password,
+      grant_type: "password"
+    }
+    return this.http.post<any>(this.UserUrl+"user/login/", Request, httpOptions).pipe(
+      catchError(this.handleError<any>('login'))
     );
   }
 }

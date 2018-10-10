@@ -18,9 +18,9 @@ export class LoginBoxComponent implements OnInit {
   form: FormGroup;
 
   login(): void {
-    console.log(this.form.value)
-    this.user = this.form.value;
-    this.loginService.login(this.user).subscribe();
+    this.loginService.login(this.form.value).subscribe(user=>{
+      console.log(user);
+    }
   }
   ngOnInit() {
     this.form = this.formBuilder.group({
