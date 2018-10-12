@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Observable, of } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { catchError, map, tap } from "rxjs/operators";
@@ -12,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class LoginService {
-
+  @Output() loggingToggle: EventEmitter<boolean> = new EventEmitter();
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -24,7 +24,7 @@ export class LoginService {
   constructor(
     private http: HttpClient
   ) { }
-
+  
   login(user: User): Observable<User> {
     let Request = {
       UserName : user.username,

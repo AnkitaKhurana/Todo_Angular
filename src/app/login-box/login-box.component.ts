@@ -12,16 +12,17 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginBoxComponent implements OnInit {
 
   constructor(private loginService: LoginService, private formBuilder: FormBuilder) { }
-  @Output() loggedIn = new EventEmitter<boolean>();
-
   user: User;
   form: FormGroup;
 
   login(): void {
     this.loginService.login(this.form.value).subscribe(user =>
       {
-        this.user = user;
-        this.loggedIn.emit(true);
+        if(user)
+        {
+          this.user = user
+          this.loginService.loggingToggle.emit(true);
+        }       
       },     
       error => {
         console.log(error);

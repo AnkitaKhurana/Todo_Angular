@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,17 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-
-  logged: Boolean
-  constructor( ) {
-    this.logged = false;
-   }
-   logging(value : Boolean){
-     console.log('Logging',value)
-     this.logged = value;
-   }
-  ngOnInit() {
+  logged: Boolean;
+  constructor(private loginService : LoginService ) {
+    this.logged=false;
   }
 
+  ngOnInit() {
+    this.loginService.loggingToggle.subscribe(data => this.logged=data);
+  }
+  
 }
