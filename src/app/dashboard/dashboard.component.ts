@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
+import {Subscription} from 'rxjs';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +10,16 @@ import { LoginService } from '../login.service';
 })
 export class DashboardComponent implements OnInit {
   logged: Boolean;
+  subscription:Subscription;
+
   constructor(private loginService : LoginService ) {
     this.logged=false;
   }
-
   ngOnInit() {
-    this.loginService.loggingToggle.subscribe(data => this.logged=data);
+    this.subscription = this.loginService.loggingObservable.subscribe(data => this.logged=data);
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
   
 }

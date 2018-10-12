@@ -15,13 +15,16 @@ export class LoginBoxComponent implements OnInit {
   user: User;
   form: FormGroup;
 
+
   login(): void {
     this.loginService.login(this.form.value).subscribe(user =>
       {
         if(user)
         {
-          this.user = user
-          this.loginService.loggingToggle.emit(true);
+          this.user = user;
+          this.loginService.changeLoggedIn(true);
+          // this.loginService.loggingObservable.next(true);
+          // this.loginService.loggingToggle.emit(true);
         }       
       },     
       error => {
